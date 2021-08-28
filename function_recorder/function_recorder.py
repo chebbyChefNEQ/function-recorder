@@ -82,16 +82,8 @@ class _FunctionRecordingSystem:
         f: Callable,
         sample_size: int = 32,
     ):
-        """Returns a list of :class:`bluepy.blte.Service` objects representing
-        the services offered by the device. This will perform Bluetooth service
-        discovery if this has not already been done; otherwise it will return a
-        cached list of services immediately..
-
-        :param uuids: A list of string service UUIDs to be discovered,
-            defaults to None
-        :type uuids: list, optional
-        :return: A list of the discovered :class:`bluepy.blte.Service` objects,
-            which match the provided ``uuids``
+        """
+        :return: the wrapped function if enabled
         :rtype: Callable[..., Any]
         """
         with self.init_lock:
@@ -100,7 +92,7 @@ class _FunctionRecordingSystem:
                 if self.enabled:
                     self._print_init_message()
             if not self.enabled:
-                return
+                return f
         return _FunctionRecorder(
             f,
             sample_size=sample_size,
