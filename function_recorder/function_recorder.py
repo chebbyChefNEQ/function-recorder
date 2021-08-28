@@ -92,7 +92,7 @@ class _FunctionRecordingSystem:
         :type uuids: list, optional
         :return: A list of the discovered :class:`bluepy.blte.Service` objects,
             which match the provided ``uuids``
-        :rtype: Callable[]
+        :rtype: Callable[..., Any]
         """
         with self.init_lock:
             if not self.initalized:
